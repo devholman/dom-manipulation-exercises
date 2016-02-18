@@ -47,26 +47,11 @@ document.querySelector("#blow-up button").addEventListener('click',function(){
 
 document.querySelector("#remove button").addEventListener('click',function(){
   // TASK #5
-  // if children of class 'exerciseItem' is active
-  //pass though new array
-	 // var inactiveStatus = function(listItemNode){
 
-	 // 	if(listItemNode === "inactive"){
-	 // 		return true
-	 // 	} else {
-	 // 		return false
-	 // 	}
-	 // }
 	
 	var listContainer = document.querySelector("#userList")
 	var listItemNodes  = document.querySelectorAll("#userList li")
 
-	// for(var i=0; i < listItemNode.length; i++){
-	// 	allNodes = listItemNode[i]
-	// 	if(inactiveStatus(allNodes)){
-	// 		listContainer.removeChild(allNodes)
-	// 	}
-	// }
 	for(var i=0; i < listItemNodes.length; i++){
 
 		if(listItemNodes[i].className === "inactive"){
@@ -74,21 +59,72 @@ document.querySelector("#remove button").addEventListener('click',function(){
 			listContainer.removeChild(listItemNodes[i])
 		}
 	}
-
-	
-
-  
 })
-
 
 document.querySelector("#reverse-squares button").addEventListener('click',function(){
   // TASK #6
+  var squareContainer = document.querySelector("#reverse-squares .answer-box")
+  var allSquareBoxes = document.querySelectorAll("#reverse-squares .answer-box span")
+
+  console.log(allSquareBoxes)
+
+  squareContainer.innerHTML = ''
+
+  for(var i = allSquareBoxes.length-1; i >= 0; i--){
+
+  		console.log(allSquareBoxes[i])
+
+  		squareContainer.appendChild(allSquareBoxes[i])
+  }
+ 
+
 })
 
 document.querySelector("#pig-latin button").addEventListener('click',function(){
   // TASK #7
+
+  var taskBox = document.querySelectorAll("#tasks li")
+
+
+var reverseString = function (input){
+	var newString = ''
+	for(var i = input.length-1; i>=0; i--){
+		var char = input.charAt(i)
+		newString += char
+	}
+	return newString
+}
+
+var newArray = []
+for(var i  = 0; i<taskBox.length; i++){
+	var newStringArray = reverseString(taskBox[i].innerHTML)
+	taskBox[i].innerHTML = newStringArray
+	newArray.push(newStringArray)
+
+	console.log(newArray)
+}	
+
 })
+
 
 document.querySelector("#cycle-image button").addEventListener('click',function(){
   // TASK #8
+     var imageEl = document.querySelector("#city-img")
+   var imageURLArray = imageEl.src.split('/')
+   var arrayLength = imageURLArray.length
+   var currentImageNumber = imageURLArray[arrayLength-1]
+   var numberCharLength = currentImageNumber.length
+   var trueImageNumber = parseInt(currentImageNumber)
+
+   if(trueImageNumber < 10){
+     trueImageNumber = trueImageNumber + 1
+   }
+   else{
+     trueImageNumber = 1
+   }
+
+  // trueImageNumber - (trueImageNumber % 3) +1
+
+   var theEnd= imageEl.src.slice(0, imageEl.src.length -numberCharLength) + trueImageNumber
+   imageEl.src = theEnd
 })
